@@ -36,16 +36,35 @@
       display: flex;
       padding: 0;
     }
+    @media (max-width: 800px) {
+      .part.box {
+        display: block;
+      }
+    }
     .domain.box {
       border-right: 1px solid #b0bec5;
       box-sizing: border-box;
       padding: 0 16px;
       width: 25%;
     }
+    @media (max-width: 800px) {
+      .domain.box {
+        width: auto;
+        border-right: 0 none;
+        border-bottom: 1px solid #b0bec5;
+      }
+    }
     #domain-api-1,
     #domain-api-2,
     #domain-api-3 {
       border-right: 1px solid transparent;
+    }
+    @media (max-width: 800px) {
+      #domain-api-1,
+      #domain-api-2,
+      #domain-api-3 {
+        border-bottom: 1px solid transparent;
+      }
     }
     .dir.box {
       border: 1px solid #b0bec5;
