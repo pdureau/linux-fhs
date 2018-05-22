@@ -179,10 +179,25 @@
               <dt class="subdir title">./bin</dt>
               <dd class="subdir info">Executable commands</dd>
               <dt class="subdir title">./lib</dt>
-              <dd class="subdir info">Binaries not to be executed directly</dd>
+              <dd class="subdir info">Binaries not to be executed directly at all</dd>
+              <dt class="subdir title">./libexec</dt>
+              <dd class="subdir info">Binaries not to be executed directly by users</dd>
               <dt class="subdir title">./share</dt>
               <dd class="subdir info">Architecture independent data</dd>
             </dl>
+          </div>
+          <p class="dir info">Other directories:</p>
+          <div class="subdir box" id="dir-var">
+            <h3 class="subdir title">/bin</h3>
+            <p class="subdir info">Link to /usr/bin</p>
+          </div>
+          <div class="subdir box" id="dir-var">
+            <h3 class="subdir title">/lib</h3>
+            <p class="subdir info">Link to /usr/lib</p>
+          </div>
+          <div class="subdir box" id="dir-var">
+            <h3 class="subdir title">/sbin</h3>
+            <p class="subdir info">Link to /usr/bin or /usr/sbin</p>
           </div>
         </div> 
 
@@ -203,8 +218,6 @@
               <dd class="subdir info">Cached data</dd>
               <dt class="subdir title">./lib</dt>
               <dd class="subdir info">Variable state information</dd>
-              <dt class="subdir title">./local</dt>
-              <dd class="subdir info">Locally installed software</dd>
               <dt class="subdir title">./log</dt>
               <dd class="subdir info">Persistent logs</dd>
               <dt class="subdir title">./spool</dt>
@@ -213,16 +226,20 @@
               <dd class="subdir info">Temp files stored for an unspecified duration</dd>
             </dl>
           </div>
+          <div class="dir box" id="dir-root">
+            <h3 class="dir title">/root</h3>
+            <p class="dir info">Root user's directory</p>
+          </div>
         </div> 
 
         <div class="domain box" id="domain-users">
           <div class="domain meta">
-            <h2 class="domain title">Users</h2>
+            <h2 class="domain title">Assets</h2>
             <p class="domain info">Sharable<br/>Always writable</p>
           </div>
           <div class="dir box" id="dir-home">
             <h3 class="dir title">/home</h3>
-            <p class="dir info">Normal users' directories</p>
+            <p class="dir info">Human users' directories</p>
             <dl class="subdir box">
               <dt class="subdir title">~/.cache</dt>
               <dd class="subdir info">Persistent user cache data</dd>
@@ -232,9 +249,14 @@
               <dd class="subdir info">Per-user installed software</dd>
             </dl>
           </div>
-          <div class="dir box" id="dir-root">
-            <h3 class="dir title">/root</h3>
-            <p class="dir info">Root user's directory</p>
+          <p class="dir info">Other directories:</p>
+          <div class="subdir box" id="dir-var">
+            <h3 class="subdir title">/opt</h3>
+            <p class="subdir info">Application packages, managed by the administrator</p>
+          </div>
+          <div class="subdir box" id="dir-var">
+            <h3 class="subdir title">/srv</h3>
+            <p class="subdir info">Server payload, managed by the administrator</p>
           </div>
         </div> 
 
@@ -261,8 +283,16 @@
             <h3 class="dir title">/tmp</h3>
             <p class="dir info">Small temporary files</p>
           </div>
+          <p class="dir info">Other directories:</p>
+          <div class="subdir box" id="dir-var">
+            <h3 class="subdir title">/media</h3>
+            <p class="subdir info">Link to /run/media</p>
+          </div>
+          <div class="subdir box" id="dir-var">
+            <h3 class="subdir title">/mnt</h3>
+            <p class="subdir info">Manually mounted resources, managed by the administrator</p>
+          </div>
         </div> 
-
       </div>
     </div>
 
@@ -302,7 +332,7 @@
         <div class="domain box" id="domain-api-3">
           <div class="dir box" id="dir-sys">
             <h3 class="dir title">/sys</h3>
-            <p class="dir info">Like /proc but better structured</p>
+            <p class="dir info">Like /dev but better structured</p>
           </div>
         </div> 
 
