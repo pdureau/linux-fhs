@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html 	
-  xmlns="http://www.w3.org/1999/xhtml"
-  vocab="http://www.w3.org/1999/xhtml/vocab#"
-  lang="en"
-  xml:lang="en">
-
+<html xmlns="http://www.w3.org/1999/xhtml" vocab="http://www.w3.org/1999/xhtml/vocab#" lang="en" xml:lang="en">
   <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Modern Linux FHS</title>
     <style>
     html {
@@ -25,10 +19,6 @@
       margin-bottom: 24px;
     }
     .part.box {
-      background-color: white;
-      border: 1px solid #b0bec5;
-      border-radius: 2px;
-      box-shadow: #b4b4b4 0 1px 3px;
       display: flex;
       padding: 0;
     }
@@ -38,10 +28,9 @@
       }
     }
     .domain.box {
-      border-right: 1px solid #b0bec5;
       box-sizing: border-box;
       padding: 0 16px;
-      width: 25%;
+      width: 20%;
     }
     @media (max-width: 800px) {
       .domain.box {
@@ -50,30 +39,20 @@
         border-bottom: 1px solid #b0bec5;
       }
     }
-    #domain-api-1,
-    #domain-api-2,
-    #domain-api-3 {
-      border-right: 1px solid transparent;
-    }
-    @media (max-width: 800px) {
-      #domain-api-1,
-      #domain-api-2,
-      #domain-api-3 {
-        border-bottom: 1px solid transparent;
-      }
-    }
     .dir.box {
       border: 1px solid #b0bec5;
       border-radius: 2px;
       box-shadow: #b4b4b4 0 1px 3px;
       margin: 16px 0;
       padding: 0;
+      background: white;
     }
     .subdir.box {
       border: 1px solid #b0bec5;
       border-bottom: 0;
       margin: 0 8px 8px;
       padding: 0;
+      background: white;
     }
 
     /* Titles */
@@ -97,7 +76,7 @@
     .dir.title {
       background: #f0f0f0;
       border-bottom: 1px solid #b0bec5;
-      font-size: large;
+      font-size: medium;
       line-height: 32px;
       margin: 0;
       padding: 0 8px;
@@ -122,12 +101,7 @@
     #domain-run .dir.title {
       background-color: #ffcdd2;
     }
-    #domain-boot .dir.title {
-      background-color: #d7ccc8;
-    }
-    #domain-api-1 .dir.title,
-    #domain-api-2 .dir.title,
-    #domain-api-3 .dir.title {
+    #domain-kernel .dir.title {
       background-color: #e1bee7;
     }
 
@@ -160,187 +134,168 @@
 
     </style>
   </head>
-
   <body>
-
     <div class="part">
-      <h1 class="part title">User Space</h1>
+      <h1 class="part title">Modern Linux FHS</h1>
       <div class="part box">
 
-        <div class="domain box" id="domain-vendor">
+        <div class="domain box" id="domain-kernel">
           <div class="domain meta">
-            <h2 class="domain title">Vendor</h2>
-            <p class="domain info">Sharable<br/>Can be read-only</p>
+            <h2 class="domain title">Kernel</h2>
+            <p class="domain info">Only local<br />Can be read-only</p>
           </div>
-          <div class="dir box" id="dir-usr">
-            <h3 class="dir title">/usr</h3>
-            <p class="dir info">Vendor-supplied resources</p>
-            <dl class="subdir box">
-              <dt class="subdir title">./bin</dt>
-              <dd class="subdir info">Executable commands</dd>
-              <dt class="subdir title">./lib</dt>
-              <dd class="subdir info">Binaries not to be executed directly at all</dd>
-              <dt class="subdir title">./libexec</dt>
-              <dd class="subdir info">Binaries not to be executed directly by users</dd>
-              <dt class="subdir title">./share</dt>
-              <dd class="subdir info">Architecture independent data</dd>
-            </dl>
-          </div>
-          <p class="dir info">Other directories:</p>
-          <div class="subdir box" id="dir-var">
-            <h3 class="subdir title">/bin</h3>
-            <p class="subdir info">Link to /usr/bin</p>
-          </div>
-          <div class="subdir box" id="dir-var">
-            <h3 class="subdir title">/lib</h3>
-            <p class="subdir info">Link to /usr/lib</p>
-          </div>
-          <div class="subdir box" id="dir-var">
-            <h3 class="subdir title">/sbin</h3>
-            <p class="subdir info">Link to /usr/bin or /usr/sbin</p>
-          </div>
-        </div> 
-
-        <div class="domain box" id="domain-local">
-          <div class="domain meta">
-            <h2 class="domain title">Host</h2>
-            <p class="domain info">Only local<br/>Always writable</p>
-          </div>
-          <div class="dir box" id="dir-etc">
-            <h3 class="dir title">/etc</h3>
-            <p class="dir info">Configuration</p>
-          </div>
-          <div class="dir box" id="dir-var">
-            <h3 class="dir title">/var</h3>
-            <p class="dir info">Persistent, variable data</p>
-            <dl class="subdir box">
-              <dt class="subdir title">./cache</dt>
-              <dd class="subdir info">Cached data</dd>
-              <dt class="subdir title">./lib</dt>
-              <dd class="subdir info">Variable state information</dd>
-              <dt class="subdir title">./log</dt>
-              <dd class="subdir info">Persistent logs</dd>
-              <dt class="subdir title">./spool</dt>
-              <dd class="subdir info">Queued files</dd>
-              <dt class="subdir title">./tmp</dt>
-              <dd class="subdir info">Temp files stored for an unspecified duration</dd>
-            </dl>
-          </div>
-          <div class="dir box" id="dir-root">
-            <h3 class="dir title">/root</h3>
-            <p class="dir info">Root user's directory</p>
-          </div>
-        </div> 
-
-        <div class="domain box" id="domain-users">
-          <div class="domain meta">
-            <h2 class="domain title">Assets</h2>
-            <p class="domain info">Sharable<br/>Always writable</p>
-          </div>
-          <div class="dir box" id="dir-home">
-            <h3 class="dir title">/home</h3>
-            <p class="dir info">Human users' directories</p>
-            <dl class="subdir box">
-              <dt class="subdir title">~/.cache</dt>
-              <dd class="subdir info">Persistent user cache data</dd>
-              <dt class="subdir title">~/.config</dt>
-              <dd class="subdir info">Configuration and state</dd>
-              <dt class="subdir title">~/.local</dt>
-              <dd class="subdir info">Per-user installed software</dd>
-            </dl>
-          </div>
-          <p class="dir info">Other directories:</p>
-          <div class="subdir box" id="dir-var">
-            <h3 class="subdir title">/mnt</h3>
-            <p class="subdir info">Manually mounted resources, managed by the administrator</p>
-          </div>
-          <div class="subdir box" id="dir-var">
-            <h3 class="subdir title">/opt</h3>
-            <p class="subdir info">Application packages, managed by the administrator</p>
-          </div>
-          <div class="subdir box" id="dir-var">
-            <h3 class="subdir title">/srv</h3>
-            <p class="subdir info">Server payload, managed by the administrator</p>
-          </div>
-        </div> 
-
-        <div class="domain box" id="domain-run">
-          <div class="domain meta">
-            <h2 class="domain title">Runtime</h2>
-            <p class="domain info">Flushed on boot<br/>Always writable</p>
-          </div>
-          <div class="dir box" id="dir-run">
-            <h3 class="dir title">/run</h3>
-            <p class="dir info">Runtime data</p>
-            <dl class="subdir box">
-              <dt class="subdir title">./lock</dt>
-              <dd class="subdir info">Lock files</dd>
-              <dt class="subdir title">./log</dt>
-              <dd class="subdir info">Runtime system logs</dd>
-              <dt class="subdir title">./media</dt>
-              <dd class="subdir info">Mount points for removable media</dd>
-              <dt class="subdir title">./user</dt>
-              <dd class="subdir info">Per-user runtime directories</dd>
-            </dl>
-          </div>
-          <div class="dir box" id="dir-tmp">
-            <h3 class="dir title">/tmp</h3>
-            <p class="dir info">Small temporary files</p>
-          </div>
-          <p class="dir info">Other directories:</p>
-          <div class="subdir box" id="dir-var">
-            <h3 class="subdir title">/media</h3>
-            <p class="subdir info">Link to /run/media</p>
-          </div>
-        </div> 
-      </div>
-    </div>
-
-    <div class="part">
-      <h1 class="part title">Kernel Space</h1>
-      <div class="part box">
-
-        <div class="domain box" id="domain-boot">
           <div class="dir box" id="dir-boot">
             <h3 class="dir title">/boot</h3>
             <p class="dir info">The kernel and other things used for booting up</p>
           </div>
           <div class="domain meta">
-            <h2 class="domain title">Boot</h2>
-            <p class="domain info">Only local<br/>Can be read-only</p>
+            <h2 class="domain title">Kernel API</h2>
+            <p class="domain info">Only local<br />Virtual, may be writable</p>
           </div>
-      </div>
-
-        <div class="domain box" id="domain-api-1">
           <div class="dir box" id="dir-dev">
             <h3 class="dir title">/dev</h3>
             <p class="dir info">Physical and special devices</p>
           </div>
-        </div> 
-
-        <div class="domain box" id="domain-api-2">
           <div class="dir box" id="dir-proc">
             <h3 class="dir title">/proc</h3>
             <p class="dir info">Running processes and kernel info</p>
           </div>
-          <div class="domain meta">
-            <h2 class="domain title">Kernel API</h2>
-            <p class="domain info">Virtual<br/>Interface with the kernel from user space</p>
-          </div>
-        </div> 
-
-        <div class="domain box" id="domain-api-3">
           <div class="dir box" id="dir-sys">
             <h3 class="dir title">/sys</h3>
             <p class="dir info">Discovered devices and other functionality</p>
           </div>
-        </div> 
+        </div>
 
+      <div class="domain box" id="domain-vendor">
+        <div class="domain meta">
+          <h2 class="domain title">Vendor</h2>
+          <p class="domain info">Sharable<br />Can be read-only</p>
+        </div>
+        <div class="dir box" id="dir-usr">
+          <h3 class="dir title">/usr</h3>
+          <p class="dir info">Vendor-supplied resources</p>
+          <dl class="subdir box">
+            <dt class="subdir title">./bin</dt>
+            <dd class="subdir info">Executable commands</dd>
+            <dt class="subdir title">./lib</dt>
+            <dd class="subdir info">Binaries not to be executed directly at all</dd>
+            <dt class="subdir title">./libexec</dt>
+            <dd class="subdir info">Binaries not to be executed directly by users</dd>
+            <dt class="subdir title">./share</dt>
+            <dd class="subdir info">Architecture independent data</dd>
+          </dl>
+        </div>
+        <p class="dir info">Other directories:</p>
+        <div class="subdir box" id="dir-var">
+          <h3 class="subdir title">/bin</h3>
+          <p class="subdir info">Link to /usr/bin</p>
+        </div>
+        <div class="subdir box" id="dir-var">
+          <h3 class="subdir title">/lib</h3>
+          <p class="subdir info">Link to /usr/lib</p>
+        </div>
+        <div class="subdir box" id="dir-var">
+          <h3 class="subdir title">/sbin</h3>
+          <p class="subdir info">Link to /usr/bin or /usr/sbin</p>
+        </div>
+      </div>
+
+      <div class="domain box" id="domain-local">
+        <div class="domain meta">
+          <h2 class="domain title">Host</h2>
+          <p class="domain info">Only local<br />Always writable</p>
+        </div>
+        <div class="dir box" id="dir-etc">
+          <h3 class="dir title">/etc</h3>
+          <p class="dir info">Configuration</p>
+        </div>
+        <div class="dir box" id="dir-var">
+          <h3 class="dir title">/var</h3>
+          <p class="dir info">Persistent, variable data</p>
+          <dl class="subdir box">
+            <dt class="subdir title">./cache</dt>
+            <dd class="subdir info">Cached data</dd>
+            <dt class="subdir title">./lib</dt>
+            <dd class="subdir info">Variable state information</dd>
+            <dt class="subdir title">./log</dt>
+            <dd class="subdir info">Persistent logs</dd>
+            <dt class="subdir title">./spool</dt>
+            <dd class="subdir info">Queued files</dd>
+            <dt class="subdir title">./tmp</dt>
+            <dd class="subdir info">Temp files stored for an unspecified duration</dd>
+          </dl>
+        </div>
+        <p class="dir info">Other directories:</p>
+        <div class="subdir box" id="dir-var">
+          <h3 class="subdir title">/root</h3>
+          <p class="subdir info">Root user's directory, managed by the administrator</p>
+        </div>
+      </div>
+
+      <div class="domain box" id="domain-users">
+        <div class="domain meta">
+          <h2 class="domain title">Assets</h2>
+          <p class="domain info">Sharable<br />Always writable</p>
+        </div>
+        <div class="dir box" id="dir-home">
+          <h3 class="dir title">/home</h3>
+          <p class="dir info">Human users' directories</p>
+          <dl class="subdir box">
+            <dt class="subdir title">~/.cache</dt>
+            <dd class="subdir info">Persistent user cache data</dd>
+            <dt class="subdir title">~/.config</dt>
+            <dd class="subdir info">Configuration and state</dd>
+            <dt class="subdir title">~/.local</dt>
+            <dd class="subdir info">Per-user installed software</dd>
+          </dl>
+        </div>
+        <p class="dir info">Other directories:</p>
+        <div class="subdir box" id="dir-var">
+          <h3 class="subdir title">/mnt</h3>
+          <p class="subdir info">Manually mounted resources, managed by the administrator</p>
+        </div>
+        <div class="subdir box" id="dir-var">
+          <h3 class="subdir title">/opt</h3>
+          <p class="subdir info">Application packages, managed by the administrator</p>
+        </div>
+        <div class="subdir box" id="dir-var">
+          <h3 class="subdir title">/srv</h3>
+          <p class="subdir info">Server payload, managed by the administrator</p>
+        </div>
+      </div>
+
+      <div class="domain box" id="domain-run">
+        <div class="domain meta">
+          <h2 class="domain title">Runtime</h2>
+          <p class="domain info">Only local<br />Always writable, flushed on boot</p>
+        </div>
+        <div class="dir box" id="dir-run">
+          <h3 class="dir title">/run</h3>
+          <p class="dir info">Runtime data</p>
+          <dl class="subdir box">
+            <dt class="subdir title">./lock</dt>
+            <dd class="subdir info">Lock files</dd>
+            <dt class="subdir title">./log</dt>
+            <dd class="subdir info">Runtime system logs</dd>
+            <dt class="subdir title">./media</dt>
+            <dd class="subdir info">Mount points for removable media</dd>
+            <dt class="subdir title">./user</dt>
+            <dd class="subdir info">Per-user runtime directories</dd>
+          </dl>
+        </div>
+        <div class="dir box" id="dir-tmp">
+          <h3 class="dir title">/tmp</h3>
+          <p class="dir info">Small temporary files</p>
+        </div>
+        <p class="dir info">Other directories:</p>
+        <div class="subdir box" id="dir-var">
+          <h3 class="subdir title">/media</h3>
+          <p class="subdir info">Link to /run/media</p>
+        </div>
       </div>
     </div>
+      </div>
 
-    <p class="notes">Sources&#160;: <a href="https://www.freedesktop.org/software/systemd/man/file-hierarchy.html">man file-hierarchy(7)</a> &amp; <a href="https://udisks.freedesktop.org/docs/latest/udisks.8.html">man udisks(8)</a>.</p>
-
+    <p class="notes">Sources : <a href="https://www.freedesktop.org/software/systemd/man/file-hierarchy.html">man file-hierarchy(7)</a> &amp; <a href="https://udisks.freedesktop.org/docs/latest/udisks.8.html">man udisks(8)</a>.</p>
   </body>
-
 </html>
